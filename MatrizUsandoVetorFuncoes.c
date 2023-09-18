@@ -7,12 +7,12 @@ int calcularTamanhoVetor(int linhas, int colunas) {
     return linhas * colunas;
 }
 
-// Função para zerar uma matriz representada como um vetor.
+/* Função para zerar uma matriz representada como um vetor.
 void zerarMatriz(int matriz[], int tamanho) {
 	for (int i = 0; i < tamanho; i++) {
         matriz[i] = 0;
     }
-}
+}*/
 
 void adicionarElemento(int matriz[], int linha, int coluna, int colunas, int elemento) {
     // Calcula o índice correspondente no vetor
@@ -51,13 +51,13 @@ void buscarElemento(int matriz[], int linhas, int colunas, int linhaBusca, int c
     }
 }
 
-int somarVetor(int vetor[], int tamanho) {
+/*int somarVetor(int vetor[], int tamanho) {
     int soma = 0;
     for (int i = 0; i < tamanho; i++) {
         soma += vetor[i];
     }
     return soma;
-}
+}*/
 
 int main() {
     // Calcula o tamanho do vetor necessário.
@@ -65,7 +65,15 @@ int main() {
     int matriz[tamanhoVetor]; // Vetor para representar a matriz
 
     // Inicializa a matriz com zeros.
-    zerarMatriz(matriz, tamanhoVetor);
+    adicionarElemento(matriz, 1, 1, colunas, 0);
+    adicionarElemento(matriz, 1, 2, colunas, 0);
+    adicionarElemento(matriz, 1, 3, colunas, 0);
+    adicionarElemento(matriz, 2, 1, colunas, 0);
+    adicionarElemento(matriz, 2, 2, colunas, 0);
+    adicionarElemento(matriz, 2, 3, colunas, 0);
+    adicionarElemento(matriz, 3, 1, colunas, 0);
+    adicionarElemento(matriz, 3, 2, colunas, 0);
+    adicionarElemento(matriz, 3, 3, colunas, 0);
     
     // Imprime a matriz antes da adição.
     imprimirMatriz(matriz, linhas, colunas);
@@ -86,8 +94,8 @@ int main() {
     
     // Busca elementos na matriz.
     buscarElemento(matriz, linhas, colunas, 2, 3); // Busca o elemento na linha 2 e coluna 3.
-    int soma = somarVetor(matriz, tamanhoVetor);
-    printf("Soma dos elementos da matriz: %d\n", soma);
+    /*int soma = somarVetor(matriz, tamanhoVetor);*/
+    /*printf("Soma dos elementos da matriz: %d\n", soma);*/
 
     return 0;
 }
