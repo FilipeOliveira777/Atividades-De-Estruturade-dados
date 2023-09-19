@@ -90,18 +90,22 @@ int identidade_Matriz(int matriz[], int n) {
     return 1; // É uma matriz identidade
 }
 //Função para multiplicar as duas matriz.
-int inversa_Matriz( int *vet_1, int *vet_2, int *matrizResultadoMulti, int n){
-	 int tamanho = calcularTamanhoVetor(n,n);
-    for (int i = 0; i < tamanho; i++) {
-        matrizResultadoMulti[i] = vet_1[i] * vet_2[i];
+//Função para multiplicar as duas matrizes e verificar a inversa.
+int inversa_Matriz(int *vet_1, int *vet_2, int *matrizResultadoMulti, int m, int n) {
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            for (int k = 0; k < n; k++) {
+                matrizResultadoMulti[i * n + j] += vet_1[i * n + k] * vet_2[k * n + j];
+            }
+        }
     }
-    int verificar_identidade_Multi= identidade_Matriz(matrizResultadoMulti,3);
-    if(verificar_identidade_Multi){
-    	return 1;
-	}
-	else{
-		return 0;
-	}
+    int ResultadoDaFuncaoInversa = identidade_Matriz(matrizResultadoMulti, n);
+    
+    if (ResultadoDaFuncaoInversa) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 
@@ -146,6 +150,12 @@ int main() {
     imprimirMatriz(matrizA, 3, 2);
     printf("Matriz B apos a adicao\n");
     imprimirMatriz(matrizB, 2, 3);
+    //chamando a função para buscar um elemento na matriz A.
+    printf("MatrizA ");
+	buscarElemento(matrizA,1,1);
+    //chamando a função para buscar um elemento na matriz B.
+    printf("MatrizB ");
+	buscarElemento(matrizB,1,1);
     //chamando a função para calcular o produto da matriz.
     produto_Matriz(matrizA,matrizB,matrizResultado,linhas,colunas);
     //imprimindo a matriz produto.
@@ -242,7 +252,7 @@ int main() {
     printf("Matriz B antes da multiplicacao\n");
     imprimirMatriz(MatrizBMulti,3,3);
 	//chamando a função para multiplicar e verificar a inversa.
-    int verificar_iversa= inversa_Matriz( MatrizAMulti, MatrizBMulti,MatrizResultadoMulti, 3);
+    int verificar_iversa= inversa_Matriz( MatrizAMulti, MatrizBMulti,MatrizResultadoMulti, 3,3);
     //verificando o resultado da inversa da matriz.
     if(verificar_iversa){
     	printf("A matriz B eh a inversa da A\n");
